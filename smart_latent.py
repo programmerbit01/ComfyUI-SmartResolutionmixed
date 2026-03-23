@@ -17,11 +17,11 @@ class SmartLatentGenerator:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "mode": (MODES, {"default": "Image"}),
-                "image_preset": (IMAGE_PRESET_KEYS, {"default": "1K (1024)"}),
-                "video_preset": (VIDEO_PRESET_KEYS, {"default": "720p (1280x720)"}),
+                "mode": (MODES, {"default": "Video"}),
+                "image_preset": (IMAGE_PRESET_KEYS, {"default": "SD (512)"}),
+                "video_preset": (VIDEO_PRESET_KEYS, {"default": "520p (960x520)"}),
                 "multiple_profile": (MULTIPLE_PROFILE_KEYS, {"default": "Auto (Image=64, Video=32)"}),
-                "aspect_ratio": (list(ASPECT_RATIOS.keys()), {"default": "16:9-Widescreen"}),
+                "aspect_ratio": (list(ASPECT_RATIOS.keys()), {"default": "9:16-TikTokReel"}),
                 "batch_size": ("INT", {"default": 1, "min": 1, "max": 16}),
             },
             "optional": {
