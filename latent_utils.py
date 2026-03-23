@@ -52,7 +52,7 @@ ASPECT_RATIOS = {
 
     # Landscape / Video
     "4:3-ClassicVideo": (4, 3),
-    "16:9-Widescreen": (16, 9),
+    "16:9-Widescreen (YouTube)": (16, 9),
 
     # Cinematic Aspect
     "21:9-CinemaScope": (21, 9),
@@ -75,10 +75,12 @@ def resolve_multiple(mode, multiple_profile):
 def normalize_aspect_ratio(aspect_ratio):
     # Allow old broken saved values too
     if aspect_ratio == "16:9_Widescreen":
-        return "16:9-Widescreen"
+        return "16:9-Widescreen (YouTube)"
+    if aspect_ratio == "16:9-Widescreen":
+        return "16:9-Widescreen (YouTube)"
     if aspect_ratio in ASPECT_RATIOS:
         return aspect_ratio
-    return "16:9-Widescreen"
+    return "16:9-Widescreen (YouTube)"
 
 
 def nearest_image_preset(long_side):
