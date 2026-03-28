@@ -24,7 +24,7 @@ class SmartResolutionPicker:
             },
             "optional": {
                 # Backward compatibility with older saved workflows
-                "resolution_preset": ("STRING", {"default": "HD-1280px"}),
+                "resolution_preset": ("STRING", {"default": ""}),
             },
         }
 
