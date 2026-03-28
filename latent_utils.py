@@ -10,11 +10,17 @@ IMAGE_PRESETS = {
 }
 
 VIDEO_PRESETS = {
-    "360p (640x360)": 640,
-    "480p (854x480)": 854,
+    "360p (adaptive)": 640,
+    "480p (adaptive)": 854,
     "520p (960x520)": 960,
     "720p (1280x720)": 1280,
     "1080p (1920x1080) - Premium": 1920,
+}
+
+# Backward-compat for old labels that implied fixed WxH.
+LEGACY_VIDEO_PRESET_ALIASES = {
+    "360p (640x360)": "360p (adaptive)",
+    "480p (854x480)": "480p (adaptive)",
 }
 
 MULTIPLE_PROFILES = {
@@ -104,6 +110,9 @@ def parse_mode_presets(mode, image_preset, video_preset, multiple_profile, resol
             video_preset = nearest_video_preset(legacy_long)
         else:
             image_preset = nearest_image_preset(legacy_long)
+
+    # Migrate old video preset labels to new adaptive labels.
+    video_preset = LEGACY_VIDEO_PRESET_ALIASES.get(video_preset, video_preset)
 
     if image_preset not in IMAGE_PRESETS:
         image_preset = "1K (1024)"
