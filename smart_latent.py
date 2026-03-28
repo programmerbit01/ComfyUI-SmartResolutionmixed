@@ -19,13 +19,13 @@ class SmartLatentGenerator:
             "required": {
                 "mode": (MODES, {"default": "Video"}),
                 "image_preset": (IMAGE_PRESET_KEYS, {"default": "SD (512)"}),
-                "video_preset": (VIDEO_PRESET_KEYS, {"default": "520p (960x520)"}),
+                "video_preset": (VIDEO_PRESET_KEYS, {"default": "480p"}),
                 "multiple_profile": (MULTIPLE_PROFILE_KEYS, {"default": "Auto (Image=64, Video=32)"}),
                 "aspect_ratio": (list(ASPECT_RATIOS.keys()), {"default": "9:16-TikTokReel"}),
                 "batch_size": ("INT", {"default": 1, "min": 1, "max": 16}),
             },
             "optional": {
-                "resolution_preset": ("STRING", {"default": "HD-1280px"}),
+                "resolution_preset": ("STRING", {"default": ""}),
             },
         }
 

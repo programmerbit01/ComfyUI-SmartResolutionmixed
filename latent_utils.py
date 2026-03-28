@@ -10,17 +10,19 @@ IMAGE_PRESETS = {
 }
 
 VIDEO_PRESETS = {
-    "360p (adaptive)": 640,
-    "480p (adaptive)": 854,
+    "360p": 640,
+    "480p": 854,
     "520p (960x520)": 960,
     "720p (1280x720)": 1280,
     "1080p (1920x1080) - Premium": 1920,
 }
 
-# Backward-compat for old labels that implied fixed WxH.
+# Backward-compat for old labels.
 LEGACY_VIDEO_PRESET_ALIASES = {
-    "360p (640x360)": "360p (adaptive)",
-    "480p (854x480)": "480p (adaptive)",
+    "360p (adaptive)": "360p",
+    "480p (adaptive)": "480p",
+    "360p (640x360)": "360p",
+    "480p (854x480)": "480p",
 }
 
 MULTIPLE_PROFILES = {
@@ -47,6 +49,10 @@ LEGACY_PRESETS = {
 }
 
 ASPECT_RATIOS = {
+    # Most-used video first
+    "9:16-TikTokReel": (9, 16),
+    "16:9-Widescreen (YouTube)": (16, 9),
+
     # Square
     "1:1-AlbumArt": (1, 1),
 
@@ -55,12 +61,8 @@ ASPECT_RATIOS = {
     "2:3-ClassicPortrait": (2, 3),
     "3:4-EditorialPortrait": (3, 4),
 
-    # Vertical Video
-    "9:16-TikTokReel": (9, 16),
-
     # Landscape / Video
     "4:3-ClassicVideo": (4, 3),
-    "16:9-Widescreen (YouTube)": (16, 9),
 
     # Cinematic Aspect
     "21:9-CinemaScope": (21, 9),
@@ -111,13 +113,13 @@ def parse_mode_presets(mode, image_preset, video_preset, multiple_profile, resol
         else:
             image_preset = nearest_image_preset(legacy_long)
 
-    # Migrate old video preset labels to new adaptive labels.
+    # Migrate old video preset labels to new labels.
     video_preset = LEGACY_VIDEO_PRESET_ALIASES.get(video_preset, video_preset)
 
     if image_preset not in IMAGE_PRESETS:
         image_preset = "1K (1024)"
     if video_preset not in VIDEO_PRESETS:
-        video_preset = "720p (1280x720)"
+        video_preset = "480p"
     if multiple_profile not in MULTIPLE_PROFILES:
         multiple_profile = "Auto (Image=64, Video=32)"
 
